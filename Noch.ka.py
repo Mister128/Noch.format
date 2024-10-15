@@ -62,4 +62,4 @@ for i in range(o - 1, m):
     font.size = Pt(12)
 
 # Сохраняет туда же, где находится и сам этот файл
-document.save((y) + (n) + ".docx")
+document.save((y) + " " + (n) + ".docx")
