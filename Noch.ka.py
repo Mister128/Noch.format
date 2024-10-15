@@ -7,6 +7,12 @@ from docx.shared import Pt
 from docx.shared import RGBColor
 document = Document()
 
+au = input('Введите имя и фамилию автора (т.е. себя): ')
+core_properties = document.core_properties
+core_properties.author = au
+last_modified_by = document.core_properties
+last_modified_by.last_modified_by = au
+
 work_type = {"з": "Занятие",
              "п": "Практическая работа",
              "р": "Работа в классе"}
