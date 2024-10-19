@@ -2,7 +2,7 @@
 # powershell --> "py -m pip install python-docx" (без кавычек конечно же вводите эту штуку. Или тупо скопируйте)
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
-from docx.shared import Inches
+from docx.shared import Cm
 from docx.shared import Pt
 from docx.shared import RGBColor
 document = Document()
@@ -49,7 +49,7 @@ for i in range(o - 1, m):
     font.color.rgb = RGBColor(0, 0, 0)
     paragraph_format = task_heading.paragraph_format
     paragraph_format.left_indent
-    paragraph_format.left_indent = Inches(0.6)
+    paragraph_format.left_indent = Cm(1.5)
     paragraph_format.left_indent
 
     # Условие
