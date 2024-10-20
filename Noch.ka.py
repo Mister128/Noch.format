@@ -62,6 +62,9 @@ for i in range(o - 1, m):
     # Описание картинки. Если не нужно, просто уберёте в ворде
     picture_description = document.add_paragraph()
     picture_description.style = "Quote"
+    picture_description.alignment
+    picture_description.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    picture_description.alignment
     run = picture_description.add_run("Рис " + str(i + 1) + ". ")
     font = run.font
     font.name = "Times New Roman"
