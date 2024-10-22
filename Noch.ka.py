@@ -7,6 +7,7 @@ from docx.shared import Pt
 from docx.shared import RGBColor
 document = Document()
 
+# Автор
 au = input('Введите имя и фамилию автора (т.е. себя): ')
 core_properties = document.core_properties
 core_properties.author = au
@@ -48,12 +49,11 @@ for i in range(o - 1, m):
     font.size = Pt(18)
     font.color.rgb = RGBColor(0, 0, 0)
     paragraph_format = task_heading.paragraph_format
-    paragraph_format.left_indent
     paragraph_format.left_indent = Cm(1.5)
-    paragraph_format.left_indent
 
     # Условие
     if_paragraph = document.add_paragraph()
+    if_paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     run = if_paragraph.add_run("Условие: ")
     font = run.font
     font.name = "Times New Roman"
@@ -62,9 +62,7 @@ for i in range(o - 1, m):
     # Описание картинки. Если не нужно, просто уберёте в ворде
     picture_description = document.add_paragraph()
     picture_description.style = "Quote"
-    picture_description.alignment
     picture_description.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    picture_description.alignment
     run = picture_description.add_run("Рис " + str(i + 1) + ". ")
     font = run.font
     font.name = "Times New Roman"
