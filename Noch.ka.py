@@ -7,8 +7,14 @@ from docx.shared import Pt
 from docx.shared import RGBColor
 document = Document()
 
-# Автор
+# Введения
 au = input('Введите имя и фамилию автора (т.е. себя): ')
+task_type = input("Напишите на русской раскладке з (занятие), п (практическая) или р (работа в классе): ")
+number_of_work = input("Введите номер работы в классе/занятия/практической: ")
+task_number = int(input("Введите количество заданий: "))
+first_task_is = int(input("Введите номер начального задания (например, '00' или '01'): "))
+
+# Автор
 core_properties = document.core_properties
 core_properties.author = au
 last_modified_by = document.core_properties
@@ -19,26 +25,22 @@ comments.comments= " "
 work_type = {"з": "Занятие",
              "п": "Практическая работа",
              "р": "Работа в классе"}
+task_type = work_type[task_type]
 
 
 # Выбор между занятем, практической, работой в классе. Думаю и так всё понятно.
-y = input("Напишите на русской раскладке з (занятие), п (практическая) или р (работа в классе): ")
-y = work_type[y]
-n = input("Введите номер работы в классе/занятия/практической: ")
     
 # Заглавие
 main_heading = document.add_heading()
-run = main_heading.add_run((y) + " " + (n))
+run = main_heading.add_run((task_type) + " " + (number_of_work))
 font = run.font
 font.bold = False
 font.name = "Arial"
 font.size = Pt(20)
 font.color.rgb = RGBColor(0, 0, 0)
 
-m = int(input("Введите количество заданий: "))
-o = int(input("Введите номер начального задания (например, '00' или '01'): "))
-# Для m заданий
-for i in range(o - 1, m):
+# Для task_number заданий
+for i in range(first_task_is - 1, task_number):
     # Задание
     task_heading = document.add_heading(level = 2)
     if (i < 9):
@@ -71,4 +73,4 @@ for i in range(o - 1, m):
     font.size = Pt(12)
 
 # Сохраняет туда же, где находится и сам этот файл
-document.save((y) + " " + (n) + ".docx")
+document.save((task_type) + " " + (number_of_work) + ".docx")
