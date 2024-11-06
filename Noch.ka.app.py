@@ -37,7 +37,11 @@ def main(page: ft.Page):
         e.control.selected = not e.control.selected
         e.control.update()
         page.update()
+
+    # Установка базовой темы
     page.theme_mode = ft.ThemeMode.DARK
+
+    # Кнопка смены темы
     theme = ft.Container(
         ft.IconButton(icon = ft.icons.DARK_MODE, selected_icon=ft.icons.SUNNY,
                     on_click=theme_changed, selected=False),
@@ -63,13 +67,23 @@ def main(page: ft.Page):
         comments = document.core_properties
         comments.comments = " "
 
+        # Разметка страницы
+        sections = document.sections
+        for section in sections:
+            section.page_height = Cm(29.7)
+            section.page_width = Cm(21)
+            section.top_margin = Cm(2)
+            section.bottom_margin = Cm(2)
+            section.left_margin = Cm(3)
+            section.right_margin = Cm(1.5)
+
         # Заглавие
         main_heading = document.add_heading()
         run = main_heading.add_run((tow) + " " + (now))
         font = run.font
         font.bold = False
         font.name = "Arial"
-        font.size = Pt(20)
+        font.size = Pt(18)
         font.color.rgb = RGBColor(0, 0, 0)
 
         # Для task_number заданий
@@ -83,7 +97,7 @@ def main(page: ft.Page):
             font = run.font
             font.bold = False
             font.name = "Arial"
-            font.size = Pt(18)
+            font.size = Pt(16)
             font.color.rgb = RGBColor(0, 0, 0)
             paragraph_format = task_heading.paragraph_format
             paragraph_format.left_indent = Cm(1.5)
@@ -94,7 +108,7 @@ def main(page: ft.Page):
             run = if_paragraph.add_run("Условие: ")
             font = run.font
             font.name = "Times New Roman"
-            font.size = Pt(12)
+            font.size = Pt(14)
 
             # Описание картинки. Если не нужно, просто уберёте в ворде
             picture_description = document.add_paragraph()
@@ -107,6 +121,7 @@ def main(page: ft.Page):
 
         # Сохраняет туда же, где находится и сам этот файл
         document.save(tow + " " + now + ".docx")
+
 
     # Название
     name = ft.Container(
