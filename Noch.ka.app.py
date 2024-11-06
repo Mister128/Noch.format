@@ -7,7 +7,9 @@ from docx.shared import RGBColor
 
 
 def main(page: ft.Page):
-    # Окно
+
+    # Настройка окна приложения
+
     page.title="Noch.ka 2.0"
     page.window_always_on_top
     page.window_width = 700
@@ -16,11 +18,16 @@ def main(page: ft.Page):
     page.window_resizable = False
     page.update()
 
-    # Цвет
-    accent_color = "#05797a"
+
+    # Инициализация переменных
+
+    # Акцентный цвет
+    accent_color = "cyan"
+
+    # Фильтр текста
     _filter = ft.InputFilter(regex_string=r"^[0-9]*$")
         
-    # Изменение темы на светлую
+    # Изменение темы
     def theme_changed(e):
         page.theme_mode = (
             ft.ThemeMode.DARK
@@ -37,9 +44,11 @@ def main(page: ft.Page):
         alignment=ft.alignment.bottom_right
         )
 
+    # Функция создания текстового документа
     def create_docx(e):
         document = Document()
-        # Введения
+
+        # Инициализация
         fln = f"{first_name.content.value} {last_name.content.value}"
         tow = str(type_work.value)
         now = str(number_of_work.content.value)
@@ -53,8 +62,6 @@ def main(page: ft.Page):
         last_modified_by.last_modified_by = fln
         comments = document.core_properties
         comments.comments = " "
-
-        # Выбор между занятем, практической, работой в классе. Думаю и так всё понятно.
 
         # Заглавие
         main_heading = document.add_heading()
@@ -154,24 +161,22 @@ def main(page: ft.Page):
                      border_color=accent_color)
         )
 
-    # Есть ли задание 00
+    # Номер начального задания
     start_task = ft.Container(
         ft.TextField(label="Введите номер начального задания",
                      input_filter=_filter,
                      max_length=2,
                      border_color=accent_color),
     )
-    
-    # Создать
-    # def check_buttons():
-        
+
+    # Кнопка создания файла
     create = ft.ElevatedButton("Создать",
                                style=ft.ButtonStyle(shape=ft.StadiumBorder()),
                                color=accent_color,
                                on_click=create_docx,
                                disabled=False)
 
-
+    # Добавление созданных элементов на страницу
     page.add(name, first_name, last_name, container_variant, type_work, number_of_work, count_of_task, start_task, create, theme)
 
 
