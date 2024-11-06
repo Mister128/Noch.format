@@ -13,6 +13,8 @@ core_properties = document.core_properties
 core_properties.author = au
 last_modified_by = document.core_properties
 last_modified_by.last_modified_by = au
+comments = document.core_properties
+comments.comments= " "
 
 work_type = {"з": "Занятие",
              "п": "Практическая работа",
