@@ -1,15 +1,15 @@
 import flet as ft
 from flet_route import Routing, path
-from pages.Nochka_format import Nochka_Page
-from pages.settings import Settings_Page
+from pages.page_format import NochkaPage
+from pages.page_settings import SettingsPage
 
 
 class Router:
     def __init__(self, page:ft.Page):
         self.page = page
         self.app_routes = [
-            path(url='/', clear=True, view=Nochka_Page().view),
-            path(url='/settings', clear=False, view=Settings_Page().view)
+            path(url='/', clear=True, view=NochkaPage().view),
+            path(url='/settings', clear=False, view=SettingsPage().view)
         ]
         Routing(
             page=self.page,

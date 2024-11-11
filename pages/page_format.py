@@ -1,13 +1,14 @@
 import flet as ft
+import settings as p
 from flet_route import Params, Basket
-from pages.settings import *
+from pages.page_settings import *
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Cm
 from docx.shared import Pt
 from docx.shared import RGBColor
 
-class Nochka_Page:
+class NochkaPage:
     def view(self, page: ft.Page, params, basket: Basket):
 
         # Настройка окна приложения
@@ -37,19 +38,16 @@ class Nochka_Page:
             e.control.update()
             page.update()
 
-        # Установка базовой темы
-        page.theme_mode = ft.ThemeMode.DARK
-
-        # Кнопка смены темы
+        # Кнопка входа на страницу настроек
         settings = ft.Row([
-            ft.Container(
-                ft.IconButton(icon=ft.icons.SETTINGS, on_click=lambda e: page.go('/settings')), 
-            ),
-            ft.Container(
-            ft.IconButton(icon = ft.icons.DARK_MODE, selected_icon=ft.icons.SUNNY,
-                        on_click=theme_changed, selected=False),
-            ),
-            ],
+            ft.IconButton(
+                icon=ft.icons.SETTINGS,
+                on_click=lambda e: page.go('/settings')),
+            ft.IconButton(
+                icon = ft.icons.DARK_MODE,
+                selected_icon=ft.icons.SUNNY,
+                on_click=theme_changed,
+                selected=False)],
             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
         )
 
@@ -132,18 +130,18 @@ class Nochka_Page:
         name = ft.Container(
                 ft.Text("Nochka.format", text_align="center", size=50),
                 alignment=ft.alignment.top_center,
-                bgcolor=accent_color
+                bgcolor=p.accent_color
             )
         
         # Имя и фамилия
         first_name = ft.Container(
                 ft.TextField(label="Введите своё имя",
-                            border_color=accent_color),
+                            border_color=p.accent_color),
             )
 
         last_name = ft.Container(
             ft.TextField(label="Введите свою фамилию",
-                        border_color=accent_color),
+                        border_color=p.accent_color),
         )
         
         # Текст
@@ -157,7 +155,7 @@ class Nochka_Page:
         # Варианты
         type_work = ft.Dropdown(
             width=700,
-            border_color=accent_color,
+            border_color=p.accent_color,
             hint_text="Выберите тип работы",
             options=[
                 ft.dropdown.Option("Занятие"),
@@ -170,7 +168,7 @@ class Nochka_Page:
         number_of_work = ft.Container(
             ft.TextField(label="Введите номер работы",
                         input_filter=_filter,
-                        border_color=accent_color),
+                        border_color=p.accent_color),
             margin=ft.margin.only(top=10),
         )
 
@@ -178,7 +176,7 @@ class Nochka_Page:
         count_of_task = ft.Container(
             ft.TextField(label="Введите кол-во заданий",
                         input_filter=_filter,
-                        border_color=accent_color)
+                        border_color=p.accent_color)
             )
 
         # Номер начального задания
@@ -186,19 +184,19 @@ class Nochka_Page:
             ft.TextField(label="Введите номер начального задания",
                         input_filter=_filter,
                         max_length=2,
-                        border_color=accent_color),
+                        border_color=p.accent_color),
         )
 
         # Кнопка создания файла
         create = ft.ElevatedButton("Создать",
                                 style=ft.ButtonStyle(shape=ft.StadiumBorder()),
-                                color=accent_color,
+                                color=p.accent_color,
                                 on_click=create_docx,
                                 disabled=False)
 
         # Добавление созданных элементов на страницу
         return ft.View(
             '/',
-            controls= [name, first_name, last_name, container_variant, type_work, number_of_work, 
+            controls=[name, first_name, last_name, container_variant, type_work, number_of_work,
                     count_of_task, start_task, create, settings]
             )
