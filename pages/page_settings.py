@@ -1,4 +1,5 @@
 import flet as ft
+import json
 from flet_route import Params, Basket
 import settings as setti
 
@@ -8,6 +9,9 @@ class SettingsPage:
 
         def change_color(e):
             setti.accent_color = setti.colors[e.control.value]
+            with open("preset.json", "w") as f:
+                to_json = {"accent_color": [setti.accent_color]}
+                json.dump(to_json, f)
 
         # Изменение темы
         def theme_changed(e):
