@@ -42,12 +42,17 @@ class NochkaPage:
         settings = ft.Row([
             ft.IconButton(
                 icon=ft.icons.SETTINGS,
-                on_click=lambda e: page.go('/settings')),
+                on_click=lambda e: page.go('/settings'),
+                style=ft.ButtonStyle(color=setti.accent_color)
+                ),
             ft.IconButton(
                 icon = ft.icons.DARK_MODE,
                 selected_icon=ft.icons.SUNNY,
                 on_click=theme_changed,
-                selected=False)],
+                selected=False,
+                style=ft.ButtonStyle(color={"selected": setti.accent_color, "": setti.accent_color})
+                )
+                ],
             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
         )
 
