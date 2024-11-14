@@ -18,9 +18,7 @@ class SettingsPage:
         # Функция изменения акцентного цвета.
         def change_color(e):
             setti.accent_color = setti.colors[e.control.value]
-            with open("preset.json", "w") as f:
-                to_json = {"accent_color": [setti.accent_color]}
-                json.dump(to_json, f)
+            usefull_func.push_changes_to_json()
 
         # Изменение темы
         def theme_changed(e):
