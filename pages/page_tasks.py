@@ -3,6 +3,7 @@ import usefull_func
 import document_creater
 from flet_route import Params, Basket
 import settings as setti
+from settings import accent_color
 
 """
 В этом файле находится страница(класс страницы) с условиями заданий. 
@@ -65,11 +66,22 @@ class TasksView:
         return ft.View(
             '/',
             controls= [
-                ft.Container(ft.Text(
-                        "Задания",
-                        size=25
+                ft.Row([
+                    ft.Container(
+                        ft.IconButton(
+                            icon=ft.icons.ARROW_LEFT,
+                            icon_color=setti.accent_color,
+                            on_click=lambda e: page.go('/')
+                        )
                     ),
-                    alignment=ft.alignment.top_center
+                    ft.Container(
+                        ft.Text(
+                            "Задания",
+                            size=25
+                        ),
+                    ),
+                ],
+                    spacing=245,
                 ),
                 tasks_list,
                 ft.Row([ft.ElevatedButton(
