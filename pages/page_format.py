@@ -2,6 +2,7 @@ import flet as ft
 import settings as setti
 from flet_route import Params, Basket
 from pages.page_settings import *
+from settings import work_number
 
 
 class NochkaPage:
@@ -12,7 +13,7 @@ class NochkaPage:
         page.title="Noch.ka 2.0"
         page.window_always_on_top
         page.window_width = 700
-        page.window_height = 630
+        page.window_height = 650
         page.window_visible = True
         page.window_resizable = False
         page.update()
@@ -36,14 +37,30 @@ class NochkaPage:
             e.control.update()
             page.update()
 
-        def continue_check(e):
-            if count_of_task.content.value != "":
-                page.go('/tasks')
+        def commit_and_check(e):
+            filled_data = 0
+            if first_name.content.value != "" and last_name.content.value != "":
                 setti.first_and_last_name = f"{first_name.content.value} {last_name.content.value}"
+                filled_data += 1
+
+            if type_work.value != None:
                 setti.type_of_work = f"{type_work.value}"
+                filled_data += 1
+
+            if number_of_work.content.value != "":
                 setti.work_number = f"{number_of_work.content.value}"
+                filled_data += 1
+
+            if count_of_task.content.value != "":
                 setti.count_of_task = int(count_of_task.content.value)
+                filled_data += 1
+
+            if start_task.content.value != "":
                 setti.start_task = int(start_task.content.value)
+                filled_data += 1
+
+            if filled_data == 5:
+                page.go('/tasks')
 
         # Кнопка входа на страницу настроек
         settings = ft.Row([
@@ -59,7 +76,7 @@ class NochkaPage:
                 selected=False,
                 style=ft.ButtonStyle(color={"selected": setti.accent_color, "": setti.accent_color})
                 )
-                ],
+            ],
             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
         )
 
@@ -113,6 +130,7 @@ class NochkaPage:
         count_of_task = ft.Container(
             ft.TextField(label="Введите кол-во заданий",
                          input_filter=_filter,
+                         max_length=3,
                          border_color=setti.accent_color)
             )
 
@@ -128,7 +146,7 @@ class NochkaPage:
         create = ft.ElevatedButton("Продолжить",
                                    style=ft.ButtonStyle(shape=ft.StadiumBorder()),
                                    color=setti.accent_color,
-                                   on_click=continue_check,
+                                   on_click=commit_and_check,
                                    disabled=False)
 
         # Добавление созданных элементов на страницу

@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e543e27-1d5e-4a3a-907e-9faed8564c38" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/document_creater.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/page_tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
+    <list default="true" id="3e543e27-1d5e-4a3a-907e-9faed8564c38" name="Changes" comment="Добавление условия заданий и комментирование кода">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/document_creater.py" beforeDir="false" afterPath="$PROJECT_DIR$/document_creater.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/page_format.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/page_format.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preset.json" beforeDir="false" afterPath="$PROJECT_DIR$/preset.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/page_tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/page_tasks.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,6 +127,19 @@
       <option name="presentableId" value="Default" />
       <updated>1731057045076</updated>
     </task>
+    <task id="LOCAL-00001" summary="Добавление условия заданий и комментирование кода">
+      <option name="closed" value="true" />
+      <created>1731567282925</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1731567282925</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Добавление условия заданий и комментирование кода" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавление условия заданий и комментирование кода" />
   </component>
 </project>

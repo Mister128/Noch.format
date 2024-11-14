@@ -10,7 +10,7 @@ class TasksView:
 
         # Блок создания функций
 
-        def continue_check(e):
+        def commit_and_check(e):
             for textfield in tasks_list.controls:
                 setti.tasks_text.append(textfield.value)
             document_creater.create_docx()
@@ -54,7 +54,7 @@ class TasksView:
                 ),
                 tasks_list,
                 ft.Row([
-                    ft.ElevatedButton("Создать", on_click=continue_check, color=setti.accent_color),
+                    ft.ElevatedButton("Создать", on_click=commit_and_check, color=setti.accent_color),
                     theme_button],
                     alignment=ft.MainAxisAlignment.SPACE_BETWEEN
                 ),

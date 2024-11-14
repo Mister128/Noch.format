@@ -1,10 +1,10 @@
-import re
-import settings
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Cm
 from docx.shared import Pt
 from docx.shared import RGBColor
+import settings
+import re
 
 """
 В этом файле находятся функции для создания ворд файла. 

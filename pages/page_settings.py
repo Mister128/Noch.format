@@ -7,6 +7,7 @@ class SettingsPage:
     def view(self, page: ft.Page, params, basket: Basket):
         page.title="Настройки"
 
+
         def change_color(e):
             setti.accent_color = setti.colors[e.control.value]
             with open("preset.json", "w") as f:
