@@ -1,8 +1,6 @@
 import flet as ft
 import settings as setti
 from flet_route import Params, Basket
-from pages.page_settings import *
-from settings import work_number
 
 
 class NochkaPage:
