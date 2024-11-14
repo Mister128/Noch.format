@@ -1,12 +1,8 @@
 import flet as ft
-import settings as p
+import settings as setti
 from flet_route import Params, Basket
 from pages.page_settings import *
-from docx import Document
-from docx.enum.text import WD_ALIGN_PARAGRAPH
-from docx.shared import Cm
-from docx.shared import Pt
-from docx.shared import RGBColor
+
 
 class NochkaPage:
     def view(self, page: ft.Page, params, basket: Basket):
@@ -26,6 +22,8 @@ class NochkaPage:
 
         # Фильтр текста
         _filter = ft.InputFilter(regex_string=r"^[0-9]*$")
+
+        # Инициализация функций
             
         # Изменение темы
         def theme_changed(e):
@@ -37,6 +35,15 @@ class NochkaPage:
             e.control.selected = not e.control.selected
             e.control.update()
             page.update()
+
+        def continue_check(e):
+            if count_of_task.content.value != "":
+                page.go('/tasks')
+                setti.first_and_last_name = f"{first_name.content.value} {last_name.content.value}"
+                setti.type_of_work = f"{type_work.value}"
+                setti.work_number = f"{number_of_work.content.value}"
+                setti.count_of_task = int(count_of_task.content.value)
+                setti.start_task = int(start_task.content.value)
 
         # Кнопка входа на страницу настроек
         settings = ft.Row([
@@ -56,97 +63,22 @@ class NochkaPage:
             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
         )
 
-        # Функция создания текстового документа
-        def create_docx(e):
-            document = Document()
-
-            # Инициализация
-            fln = f"{first_name.content.value} {last_name.content.value}"
-            tow = str(type_work.value)
-            now = str(number_of_work.content.value)
-            cot = int(count_of_task.content.value)
-            st = int(start_task.content.value)
-
-            # Автор
-            core_properties = document.core_properties
-            core_properties.author = fln
-            last_modified_by = document.core_properties
-            last_modified_by.last_modified_by = fln
-            comments = document.core_properties
-            comments.comments = " "
-
-            # Разметка страницы
-            sections = document.sections
-            for section in sections:
-                section.page_height = Cm(29.7)
-                section.page_width = Cm(21)
-                section.top_margin = Cm(2)
-                section.bottom_margin = Cm(2)
-                section.left_margin = Cm(3)
-                section.right_margin = Cm(1.5)
-
-            # Заглавие
-            main_heading = document.add_heading()
-            run = main_heading.add_run((tow) + " " + (now))
-            font = run.font
-            font.bold = False
-            font.name = "Arial"
-            font.size = Pt(18)
-            font.color.rgb = RGBColor(0, 0, 0)
-
-            # Для task_number заданий
-            for i in range(st - 1, cot):
-                # Задание
-                task_heading = document.add_heading(level=2)
-                if i < 9:
-                    run = task_heading.add_run("Задание 0" + str(i + 1))
-                else:
-                    run = task_heading.add_run("Задание " + str(i + 1))
-                font = run.font
-                font.bold = False
-                font.name = "Arial"
-                font.size = Pt(16)
-                font.color.rgb = RGBColor(0, 0, 0)
-                paragraph_format = task_heading.paragraph_format
-                paragraph_format.left_indent = Cm(1.5)
-
-                # Условие
-                if_paragraph = document.add_paragraph()
-                if_paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-                run = if_paragraph.add_run("Условие: ")
-                font = run.font
-                font.name = "Times New Roman"
-                font.size = Pt(14)
-
-                # Описание картинки. Если не нужно, просто уберёте в ворде
-                picture_description = document.add_paragraph()
-                picture_description.style = "Quote"
-                picture_description.alignment = WD_ALIGN_PARAGRAPH.CENTER
-                run = picture_description.add_run("Рис " + str(i + 1) + ". ")
-                font = run.font
-                font.name = "Times New Roman"
-                font.size = Pt(12)
-
-            # Сохраняет туда же, где находится и сам этот файл
-            document.save(tow + " " + now + ".docx")
-
-
         # Название
         name = ft.Container(
                 ft.Text("Nochka.format", text_align="center", size=50),
                 alignment=ft.alignment.top_center,
-                bgcolor=p.accent_color
+                bgcolor=setti.accent_color
             )
         
         # Имя и фамилия
         first_name = ft.Container(
                 ft.TextField(label="Введите своё имя",
-                            border_color=p.accent_color),
+                             border_color=setti.accent_color),
             )
 
         last_name = ft.Container(
             ft.TextField(label="Введите свою фамилию",
-                        border_color=p.accent_color),
+                         border_color=setti.accent_color),
         )
         
         # Текст
@@ -160,7 +92,7 @@ class NochkaPage:
         # Варианты
         type_work = ft.Dropdown(
             width=700,
-            border_color=p.accent_color,
+            border_color=setti.accent_color,
             hint_text="Выберите тип работы",
             options=[
                 ft.dropdown.Option("Занятие"),
@@ -172,32 +104,32 @@ class NochkaPage:
         # Номер работы
         number_of_work = ft.Container(
             ft.TextField(label="Введите номер работы",
-                        input_filter=_filter,
-                        border_color=p.accent_color),
+                         input_filter=_filter,
+                         border_color=setti.accent_color),
             margin=ft.margin.only(top=10),
         )
 
         # Кол-во заданий
         count_of_task = ft.Container(
             ft.TextField(label="Введите кол-во заданий",
-                        input_filter=_filter,
-                        border_color=p.accent_color)
+                         input_filter=_filter,
+                         border_color=setti.accent_color)
             )
 
         # Номер начального задания
         start_task = ft.Container(
             ft.TextField(label="Введите номер начального задания",
-                        input_filter=_filter,
-                        max_length=2,
-                        border_color=p.accent_color),
+                         input_filter=_filter,
+                         max_length=2,
+                         border_color=setti.accent_color),
         )
 
         # Кнопка создания файла
-        create = ft.ElevatedButton("Создать",
-                                style=ft.ButtonStyle(shape=ft.StadiumBorder()),
-                                color=p.accent_color,
-                                on_click=create_docx,
-                                disabled=False)
+        create = ft.ElevatedButton("Продолжить",
+                                   style=ft.ButtonStyle(shape=ft.StadiumBorder()),
+                                   color=setti.accent_color,
+                                   on_click=continue_check,
+                                   disabled=False)
 
         # Добавление созданных элементов на страницу
         return ft.View(
