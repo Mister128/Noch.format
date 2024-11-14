@@ -1,5 +1,4 @@
 import flet as ft
-import json
 from flet_route import Params, Basket
 import settings as setti
 import usefull_func
