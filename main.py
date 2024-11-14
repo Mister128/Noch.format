@@ -6,11 +6,14 @@ import json
 def main(page: ft.Page):
 
     # Инициализация настроек приложения
-    page.theme_mode = ft.ThemeMode.DARK
+    page.theme_mode = setti.theme
 
     with open("preset.json") as f:
         data = json.load(f)
-        setti.accent_color = str(data["accent_color"])[2:-2:]
+        setti.accent_color = str(data["accent_color"])
+        setti.theme = str(data["theme"])
+
+    page.theme_mode = setti.theme
 
     # Вызов основного класса приложения, отвечающего за маршрутизацию
     Router(page)

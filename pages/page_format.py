@@ -1,12 +1,17 @@
 import flet as ft
+import usefull_func
 import settings as setti
 from flet_route import Params, Basket
 
+"""
+В этом файле находится страница(класс страницы) с данными форматирования. 
+Здесь используемые функции и элементы управления.
+"""
 
 class NochkaPage:
     def view(self, page: ft.Page, params, basket: Basket):
 
-        # Настройка окна приложения
+        # Настройка окна приложения.-------------------------------------------
 
         page.title="Noch.ka 2.0"
         page.window_always_on_top
@@ -16,25 +21,29 @@ class NochkaPage:
         page.window_resizable = False
         page.update()
 
-
-        # Инициализация переменных
+        # ---------------------------------------------------------------------
+        # Инициализация переменных.--------------------------------------------
 
         # Фильтр текста
         _filter = ft.InputFilter(regex_string=r"^[0-9]*$")
 
-        # Инициализация функций
+        # ---------------------------------------------------------------------
+        # Блок создания функций.-----------------------------------------------
             
-        # Изменение темы
+        # Изменение темы.
         def theme_changed(e):
             page.theme_mode = (
-                ft.ThemeMode.DARK
-                if page.theme_mode == ft.ThemeMode.LIGHT
-                else ft.ThemeMode.LIGHT
+                "dark"
+                if page.theme_mode == "light"
+                else "light"
             )
+            setti.theme = page.theme_mode
+            usefull_func.push_changes_to_json()
             e.control.selected = not e.control.selected
             e.control.update()
             page.update()
 
+        # Проверка заполнения данных в поля.
         def commit_and_check(e):
             filled_data = 0
             if first_name.content.value != "" and last_name.content.value != "":
@@ -60,7 +69,10 @@ class NochkaPage:
             if filled_data == 5:
                 page.go('/tasks')
 
-        # Кнопка входа на страницу настроек
+        # ---------------------------------------------------------------------
+        # Создание переменных для элементов управления.------------------------
+
+        # Линия с кнопкой выхода из настроек и кнопка смены темы.
         settings = ft.Row([
             ft.IconButton(
                 icon=ft.icons.SETTINGS,
@@ -106,7 +118,6 @@ class NochkaPage:
 
         # Варианты
         type_work = ft.Dropdown(
-            width=700,
             border_color=setti.accent_color,
             hint_text="Выберите тип работы",
             options=[
@@ -147,7 +158,9 @@ class NochkaPage:
                                    on_click=commit_and_check,
                                    disabled=False)
 
-        # Добавление созданных элементов на страницу
+        # ---------------------------------------------------------------------
+        # Добавление всех элементов управления на страницу.--------------------
+
         return ft.View(
             '/',
             controls=[name, first_name, last_name, container_variant, type_work, number_of_work,
