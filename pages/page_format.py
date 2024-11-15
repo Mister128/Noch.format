@@ -15,7 +15,7 @@ class NochkaPage:
 
         # Настройка окна приложения.-------------------------------------------
 
-        page.title="Noch.ka 2.0"
+        page.title="Noch.ka 1.3.2"
         page.window_always_on_top
         page.window_width = 700
         page.window_height = 650

@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e543e27-1d5e-4a3a-907e-9faed8564c38" name="Changes" comment="Обновление v1.3:&#10;Создание уведомлений для действий пользователя и сохранения данных при выходе из приложения.">
-      <change beforePath="$PROJECT_DIR$/output/Format program v1.2/preset.json" beforeDir="false" />
+    <list default="true" id="3e543e27-1d5e-4a3a-907e-9faed8564c38" name="Changes" comment="Обновление v1.3.1 - hotfix v1">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/page_format.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/page_format.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731658655741</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Обновление v1.3.1 - hotfix v1">
+      <option name="closed" value="true" />
+      <created>1731658773740</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1731658773740</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -207,6 +216,7 @@
     <MESSAGE value="Fix v1.1" />
     <MESSAGE value="Создание requirements.txt" />
     <MESSAGE value="Обновление v1.3:&#10;Создание уведомлений для действий пользователя и сохранения данных при выходе из приложения." />
-    <option name="LAST_COMMIT_MESSAGE" value="Обновление v1.3:&#10;Создание уведомлений для действий пользователя и сохранения данных при выходе из приложения." />
+    <MESSAGE value="Обновление v1.3.1 - hotfix v1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Обновление v1.3.1 - hotfix v1" />
   </component>
 </project>
