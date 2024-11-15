@@ -1,19 +1,21 @@
 import flet as ft
 from router import Router
-import settings as setti
+import settings
 import json
 
 def main(page: ft.Page):
 
     # Инициализация настроек приложения
-    page.theme_mode = setti.theme
+    page.theme_mode = settings.theme
 
     with open("preset.json") as f:
         data = json.load(f)
-        setti.accent_color = str(data["accent_color"])
-        setti.theme = str(data["theme"])
+        settings.accent_color = str(data["accent_color"])
+        settings.theme = str(data["theme"])
+        settings.first_name = str(data["first_name"])
+        settings.last_name = str(data["last_name"])
 
-    page.theme_mode = setti.theme
+    page.theme_mode = settings.theme
 
     # Вызов основного класса приложения, отвечающего за маршрутизацию
     Router(page)

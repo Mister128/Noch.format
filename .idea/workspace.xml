@@ -4,10 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e543e27-1d5e-4a3a-907e-9faed8564c38" name="Changes" comment="Fix v1.1">
+    <list default="true" id="3e543e27-1d5e-4a3a-907e-9faed8564c38" name="Changes" comment="Создание requirements.txt">
+      <change beforePath="$PROJECT_DIR$/.idea/Noch.format.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Noch.format.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/page_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/page_settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/document_creater.py" beforeDir="false" afterPath="$PROJECT_DIR$/document_creater.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/page_format.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/page_format.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/page_tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/page_tasks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/preset.json" beforeDir="false" afterPath="$PROJECT_DIR$/preset.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usefull_func.py" beforeDir="false" afterPath="$PROJECT_DIR$/usefull_func.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,7 +173,23 @@
       <option name="project" value="LOCAL" />
       <updated>1731574308420</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Создание requirements.txt">
+      <option name="closed" value="true" />
+      <created>1731582135129</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1731582135129</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Создание requirements.txt">
+      <option name="closed" value="true" />
+      <created>1731582214554</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1731582214554</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -175,6 +198,7 @@
     <MESSAGE value="Исправления" />
     <MESSAGE value="Добавления комментариев" />
     <MESSAGE value="Fix v1.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix v1.1" />
+    <MESSAGE value="Создание requirements.txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Создание requirements.txt" />
   </component>
 </project>

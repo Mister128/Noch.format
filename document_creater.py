@@ -27,17 +27,18 @@ def create_docx():
     # now = str(number_of_work.content.value)
     # cot = int(count_of_task.content.value)
     # st = int(start_task.content.value)
+    first_and_last_name = f"{settings.first_name} {settings.last_name}"
 
     # ---------------------------------------------------------------------
     # Автор.---------------------------------------------------------------
 
     # Кто создал документ.
     core_properties = document.core_properties
-    core_properties.author = settings.first_and_last_name
+    core_properties.author = first_and_last_name
 
     # Кто редактировал документ.
     last_modified_by = document.core_properties
-    last_modified_by.last_modified_by = settings.first_and_last_name
+    last_modified_by.last_modified_by = first_and_last_name
 
     # Комментарий.
     comments = document.core_properties
