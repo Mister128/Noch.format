@@ -118,11 +118,19 @@ class NochkaPage:
         )
 
         # Название
-        name = ft.Container(
+        name = ft.Stack([
+            ft.Container(
                 ft.Text("Nochka.format", text_align="center", size=50),
                 alignment=ft.alignment.top_center,
-                bgcolor=setti.accent_color
-            )
+                bgcolor=setti.accent_color),
+
+            ft.Row([ft.IconButton(icon=ft.icons.INFO_OUTLINE,
+                                  on_click=lambda e: page.go('/info_formatting'))
+                ],
+                alignment=ft.MainAxisAlignment.END
+                )
+            
+            ])
         
         # Имя и фамилия
         first_name = ft.Container(
