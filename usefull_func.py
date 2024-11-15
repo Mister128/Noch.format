@@ -15,6 +15,9 @@ def push_changes_to_json():
     # Создаем и открываем такой же json-файл.
     with open("preset.json", "w") as f:
         # Словарь который мы преобразуем в json-файл с помощью следующей строчки.
+        print(f"first_name - {settings.first_name}, last_name - {settings.last_name}")
         to_json = {"accent_color": settings.accent_color,
-                   "theme": settings.theme}
+                   "theme": settings.theme,
+                   "first_name": settings.first_name,
+                   "last_name": settings.last_name}
         json.dump(to_json, f)

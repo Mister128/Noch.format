@@ -3,7 +3,6 @@ import usefull_func
 import document_creater
 from flet_route import Params, Basket
 import settings as setti
-from settings import accent_color
 
 """
 В этом файле находится страница(класс страницы) с условиями заданий. 
@@ -20,7 +19,11 @@ class TasksView:
         def commit_and_check(e):
             for textfield in tasks_list.controls:
                 setti.tasks_text.append(textfield.value)
+            usefull_func.push_changes_to_json()
+            print(f"first_name - {setti.first_name}, last_name - {setti.last_name}")
             document_creater.create_docx()
+            page.open(file_save_alert)
+
 
         # Изменение темы.
         def theme_changed(e):
@@ -45,6 +48,16 @@ class TasksView:
             scroll=ft.ScrollMode.ALWAYS
         )
 
+        # Уведомление о сохранении файла.
+        file_save_alert = ft.AlertDialog(
+            title=ft.Row(
+                controls=[
+                    ft.Icon(ft.icons.SAVE_ALT,
+                            color=setti.accent_color),
+                    ft.Text("Файл сохранен в этой же папке!")]
+            )
+        )
+
         # Добавление текстовых полей в соответствии с кол-вом заданий.
         for n in range(setti.start_task, setti.count_of_task + 1):
             tasks_list.controls.append(ft.TextField(label=f"Условие задания {n}",
@@ -60,29 +73,23 @@ class TasksView:
             style=ft.ButtonStyle(color={"selected": setti.accent_color, "": setti.accent_color})
         )
 
+        # Верхняя панель с кнопкой назад и текстом.
+        upper_panel = ft.Row(
+            controls=[ft.IconButton(icon=ft.icons.ARROW_LEFT,
+                                    on_click=lambda e: page.go("/"),
+                                    icon_color=setti.accent_color),
+                      ft.Text("Задания", size=25)],
+            spacing=245
+            )
+
+
         # ---------------------------------------------------------------------
         # Добавление всех элементов управления на страницу.--------------------
 
         return ft.View(
             '/',
             controls= [
-                ft.Row([
-                    ft.Container(
-                        ft.IconButton(
-                            icon=ft.icons.ARROW_LEFT,
-                            icon_color=setti.accent_color,
-                            on_click=lambda e: page.go('/')
-                        )
-                    ),
-                    ft.Container(
-                        ft.Text(
-                            "Задания",
-                            size=25
-                        ),
-                    ),
-                ],
-                    spacing=245,
-                ),
+                upper_panel,
                 tasks_list,
                 ft.Row([ft.ElevatedButton(
                             "Создать",

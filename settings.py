@@ -3,8 +3,6 @@
 accent_color = "#07797a"
 theme = "dark"
 colors = {
-    "Белый": "white",
-    "Черный": "black",
     "Красный": "red",
     "Розовый": "pink",
     "Фиолетовый": "purple",
@@ -25,11 +23,12 @@ colors = {
 # ---------------------------------------------------------------------
 # Базовые настройки документа.-----------------------------------------
 
-first_and_last_name = "Пользователь Пользователь"
-type_of_work = "Занятие"
-work_number = 1
-count_of_task = 1
-start_task = 1
+first_name = ""
+last_name = ""
+type_of_work = None
+work_number = ""
+count_of_task = ""
+start_task = ""
 tasks_text = list()
 
 # ---------------------------------------------------------------------

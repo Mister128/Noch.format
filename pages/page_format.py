@@ -3,6 +3,8 @@ import usefull_func
 import settings as setti
 from flet_route import Params, Basket
 
+from settings import first_name, work_number
+
 """
 В этом файле находится страница(класс страницы) с данными форматирования. 
 Здесь используемые функции и элементы управления.
@@ -13,7 +15,7 @@ class NochkaPage:
 
         # Настройка окна приложения.-------------------------------------------
 
-        page.title="Noch.ka 2.0"
+        page.title="Noch.ka 1.3.2"
         page.window_always_on_top
         page.window_width = 700
         page.window_height = 650
@@ -29,6 +31,16 @@ class NochkaPage:
 
         # ---------------------------------------------------------------------
         # Блок создания функций.-----------------------------------------------
+
+        # Сохраняет введенные значения перед переходом в настройки.
+        def go_to_settings(e):
+            setti.first_name = first_name.content.value
+            setti.last_name = last_name.content.value
+            setti.type_of_work = type_work.value
+            setti.work_number = number_of_work.content.value
+            setti.count_of_task = count_of_task.content.value
+            setti.start_task = start_task.content.value
+            page.go("/settings")
             
         # Изменение темы.
         def theme_changed(e):
@@ -47,7 +59,8 @@ class NochkaPage:
         def commit_and_check(e):
             filled_data = 0
             if first_name.content.value != "" and last_name.content.value != "":
-                setti.first_and_last_name = f"{first_name.content.value} {last_name.content.value}"
+                setti.first_name = first_name.content.value
+                setti.last_name = last_name.content.value
                 filled_data += 1
 
             if type_work.value != None:
@@ -66,8 +79,11 @@ class NochkaPage:
                 setti.start_task = int(start_task.content.value)
                 filled_data += 1
 
-            if filled_data == 5:
+            print(f"first_name - {setti.first_name}, last_name - {setti.last_name}")
+            if filled_data == 5 and int(count_of_task.content.value) >= int(start_task.content.value):
                 page.go('/tasks')
+            else:
+                page.open(check_info_alert)
 
         # ---------------------------------------------------------------------
         # Создание переменных для элементов управления.------------------------
@@ -76,7 +92,7 @@ class NochkaPage:
         settings = ft.Row([
             ft.IconButton(
                 icon=ft.icons.SETTINGS,
-                on_click=lambda e: page.go('/settings'),
+                on_click=go_to_settings,
                 style=ft.ButtonStyle(color=setti.accent_color)
                 ),
             ft.IconButton(
@@ -88,6 +104,17 @@ class NochkaPage:
                 )
             ],
             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+        )
+
+        # Уведомление о не введенных данных.
+        check_info_alert = ft.AlertDialog(
+            title=ft.Row(
+                controls=[
+                    ft.Icon(ft.icons.WARNING,
+                            color=setti.accent_color),
+                    ft.Text("Некоторые данные не заполнены\n"
+                            "или заполнены неправильно!")]
+            )
         )
 
         # Название
@@ -152,11 +179,23 @@ class NochkaPage:
         )
 
         # Кнопка создания файла
-        create = ft.ElevatedButton("Продолжить",
-                                   style=ft.ButtonStyle(shape=ft.StadiumBorder()),
-                                   color=setti.accent_color,
-                                   on_click=commit_and_check,
-                                   disabled=False)
+        create = ft.ElevatedButton(
+            "Продолжить",
+            style=ft.ButtonStyle(shape=ft.StadiumBorder()),
+            color=setti.accent_color,
+            on_click=commit_and_check,
+            disabled=False
+        )
+
+        # ---------------------------------------------------------------------
+        # Задание базовых значений.--------------------------------------------
+
+        first_name.content.value = setti.first_name
+        last_name.content.value = setti.last_name
+        type_work.value = setti.type_of_work
+        number_of_work.content.value = setti.work_number
+        count_of_task.content.value = setti.count_of_task
+        start_task.content.value = setti.start_task
 
         # ---------------------------------------------------------------------
         # Добавление всех элементов управления на страницу.--------------------
