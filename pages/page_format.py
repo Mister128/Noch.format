@@ -15,8 +15,7 @@ class NochkaPage:
 
         # Настройка окна приложения.-------------------------------------------
 
-        page.title="Noch.ka 1.3.2"
-        page.window_always_on_top
+        page.title="Noch.ka 1.4.0"
         page.window_width = 700
         page.window_height = 650
         page.window_visible = True
@@ -79,7 +78,6 @@ class NochkaPage:
                 setti.start_task = int(start_task.content.value)
                 filled_data += 1
 
-            print(f"first_name - {setti.first_name}, last_name - {setti.last_name}")
             if filled_data == 5 and int(count_of_task.content.value) >= int(start_task.content.value):
                 page.go('/tasks')
             else:
@@ -110,8 +108,9 @@ class NochkaPage:
         check_info_alert = ft.AlertDialog(
             title=ft.Row(
                 controls=[
-                    ft.Icon(ft.icons.WARNING,
-                            color=setti.accent_color),
+                    ft.Icon(ft.icons.WARNING_SHARP,
+                            color=setti.accent_color,
+                            size=50),
                     ft.Text("Некоторые данные не заполнены\n"
                             "или заполнены неправильно!")]
             )

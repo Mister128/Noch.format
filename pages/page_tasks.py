@@ -19,8 +19,8 @@ class TasksView:
         def commit_and_check(e):
             for textfield in tasks_list.controls:
                 setti.tasks_text.append(textfield.value)
+            setti.used_once = True
             usefull_func.push_changes_to_json()
-            print(f"first_name - {setti.first_name}, last_name - {setti.last_name}")
             document_creater.create_docx()
             page.open(file_save_alert)
 
@@ -42,10 +42,11 @@ class TasksView:
         # Создание переменных для элементов управления.------------------------
 
         # Колонка с текстовыми полями заданий.
-        tasks_list = ft.Column(
-            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-            auto_scroll=False,
-            scroll=ft.ScrollMode.ALWAYS
+        tasks_list = ft.ListView(
+            height=480,
+            spacing=15,
+            padding=10,
+            auto_scroll=True
         )
 
         # Уведомление о сохранении файла.
@@ -53,7 +54,8 @@ class TasksView:
             title=ft.Row(
                 controls=[
                     ft.Icon(ft.icons.SAVE_ALT,
-                            color=setti.accent_color),
+                            color=setti.accent_color,
+                            size=50),
                     ft.Text("Файл сохранен в этой же папке!")]
             )
         )
@@ -81,7 +83,6 @@ class TasksView:
                       ft.Text("Задания", size=25)],
             spacing=245
             )
-
 
         # ---------------------------------------------------------------------
         # Добавление всех элементов управления на страницу.--------------------
