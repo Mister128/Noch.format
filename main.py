@@ -14,6 +14,8 @@ def main(page: ft.Page):
         settings.theme = str(data["theme"])
         settings.first_name = str(data["first_name"])
         settings.last_name = str(data["last_name"])
+        settings.used_once = data["used_once"]
+        settings.show_qiz = data["show_qiz"]
 
     # Инициализация настроек форматирования
     with open("format_settings/preset_format.json") as f:
