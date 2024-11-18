@@ -51,7 +51,7 @@ class Info_formattingPage:
         )
 
         feedback = ft.Container(
-            ft.Text("В случае изменений какона форматирования свяжитесь с нами: nochka_group_feedback@list.ru"),
+            ft.Text("В случае изменений какона форматирования свяжитесь с нами: nochka_group_feedback@list.ru", selectable=True),
             height=200,
             alignment=ft.alignment.bottom_left,
         )
