@@ -17,17 +17,17 @@ class Info_formattingPage:
         info= ft.Row([
             ft.Column([
                 ft.Text("Заголовок: "),
-                ft.Text("Центровка: справа"),
+                ft.Text("Центровка: слева"),
                 ft.Text("Стиль: Заголовок 1"),
-                ft.Text("Размер: 18"),
-                ft.Text("Шрифт: Arial"),
+                ft.Text(f"Размер: {setti.heading_font_size}"),
+                ft.Text(f"Шрифт: {setti.heading_font_name}"),
                 ft.Text(""),
 
                 ft.Text("Задание: "),
-                ft.Text("Центровка: справа, с отступом на 1.5 см."),
+                ft.Text(f"Центровка: справа, с отступом на {setti.task_left_indent} см."),
                 ft.Text("Стиль: Заголовок 2"),
-                ft.Text("Размер: 16"),
-                ft.Text("Шрифт: Arial")
+                ft.Text(f"Размер: {setti.task_font_size}"),
+                ft.Text(f"Шрифт: {setti.task_font_name}")
             ],
             ),
                 
@@ -35,15 +35,15 @@ class Info_formattingPage:
             ft.Text("Условие: "),
             ft.Text("Центровка: справа"),
             ft.Text("Стиль: Обычный"),
-            ft.Text("Размер: 14"),
-            ft.Text("Шрифт: Times New Roman"),
+            ft.Text(f"Размер: {setti.condition_font_size}"),
+            ft.Text(f"Шрифт: {setti.condition_font_name}"),
             ft.Text(""),
             
             ft.Text("Подпись под ресунком: "),
             ft.Text("Центровка: по центру"),
-            ft.Text("Стиль: Цитата"),
-            ft.Text("Размер: 14"),
-            ft.Text("Шрифт: Times New Roman"),
+            ft.Text(f"Стиль: {setti.picture_description_style}"),
+            ft.Text(f"Размер: {setti.picture_description_size}"),
+            ft.Text(f"Шрифт: {setti.picture_description_name}"),
             ],
             ),
         ],
