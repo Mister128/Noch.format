@@ -46,7 +46,7 @@ class TasksView:
             height=480,
             spacing=15,
             padding=10,
-            auto_scroll=True
+            auto_scroll=False
         )
 
         # Уведомление о сохранении файла.
