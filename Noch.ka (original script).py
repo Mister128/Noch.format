@@ -56,9 +56,9 @@ for i in range(first_task_is - 1, task_number):
     paragraph_format.left_indent = Cm(1.5)
 
     # Условие
-    if_paragraph = document.add_paragraph()
-    if_paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-    run = if_paragraph.add_run("Условие: ")
+    condition_paragraph = document.add_paragraph()
+    condition_paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+    run = condition_paragraph.add_run("Условие: ")
     font = run.font
     font.name = "Times New Roman"
     font.size = Pt(12)
