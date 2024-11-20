@@ -43,10 +43,10 @@ class TasksView:
 
         # Колонка с текстовыми полями заданий.
         tasks_list = ft.ListView(
-            height=480,
+            height=470,
             spacing=15,
             padding=10,
-            auto_scroll=True
+            auto_scroll=False
         )
 
         # Уведомление о сохранении файла.
@@ -76,13 +76,17 @@ class TasksView:
         )
 
         # Верхняя панель с кнопкой назад и текстом.
-        upper_panel = ft.Row(
-            controls=[ft.IconButton(icon=ft.icons.ARROW_LEFT,
-                                    on_click=lambda e: page.go("/"),
-                                    icon_color=setti.accent_color),
-                      ft.Text("Задания", size=25)],
-            spacing=245
-            )
+        upper_panel = ft.Column([
+            ft.Row(
+                controls=[ft.IconButton(icon=ft.icons.ARROW_BACK_ROUNDED,
+                                        on_click=lambda e: page.go("/"),
+                                        icon_color=setti.accent_color),
+                        ft.Text("Задания", size=25)],
+                spacing=245
+            ),
+            ft.Divider()
+        ]) 
+            
 
         # ---------------------------------------------------------------------
         # Добавление всех элементов управления на страницу.--------------------

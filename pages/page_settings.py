@@ -55,13 +55,30 @@ class SettingsPage:
         # ---------------------------------------------------------------------
         # Создание переменных для элементов управления.------------------------
 
+        # Кнопка назад
+        upper_panel = ft.Column([
+            ft.Row(
+                controls=[
+                    ft.IconButton(icon=ft.icons.ARROW_BACK_ROUNDED,
+                                on_click=lambda e: page.go("/"),
+                                icon_color=setti.accent_color),
+                    ft.Text("Настройки", size=25)
+                ],
+                spacing=220
+            ),
+            ft.Divider()
+        ])
+
         # Кнопка для смены темы.
-        theme_button = ft.IconButton(
-            icon=ft.icons.DARK_MODE,
-            selected_icon=ft.icons.SUNNY,
-            on_click=theme_changed,
-            selected=False,
-            style=ft.ButtonStyle(color={"selected": setti.accent_color, "": setti.accent_color})
+        theme_button = ft.Container(
+            ft.IconButton(
+                icon=ft.icons.DARK_MODE,
+                selected_icon=ft.icons.SUNNY,
+                on_click=theme_changed,
+                selected=False,
+                style=ft.ButtonStyle(color={"selected": setti.accent_color, "": setti.accent_color})
+            ),
+            alignment=ft.alignment.top_right
         )
 
         # Баннер о просьбе пройти опрос.
@@ -117,12 +134,8 @@ class SettingsPage:
         return ft.View(
             '/',
             controls= [
-                ft.Container(ft.Text("Настройки", size=25),
-                        alignment=ft.alignment.top_center),
+                upper_panel,
                 button_color,
-                ft.Row([
-                    ft.ElevatedButton("Назад", on_click=settings_close, color=setti.accent_color),
-                    theme_button],
-                    alignment=ft.MainAxisAlignment.SPACE_BETWEEN)
+                theme_button
             ]
         )
