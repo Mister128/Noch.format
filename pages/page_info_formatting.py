@@ -56,7 +56,7 @@ class Info_formattingPage:
                     ft.Text(""),
 
                     ft.Text("Задание: ", color=setti.accent_color),
-                    ft.Text(f"Центровка: справа,\n с отступом на {setti.task_left_indent} см."),
+                    ft.Text(f"Центровка: слева,\n с отступом на {setti.task_left_indent} см."),
                     ft.Text("Стиль: Заголовок 2"),
                     ft.Text(f"Размер: {setti.task_font_size}"),
                     ft.Text(f"Шрифт: {setti.task_font_name}")
@@ -65,7 +65,7 @@ class Info_formattingPage:
                     
                 ft.Column([
                 ft.Text("Условие: ", color=setti.accent_color),
-                ft.Text("Центровка: справа"),
+                ft.Text("Центровка: слева"),
                 ft.Text("Стиль: Обычный"),
                 ft.Text(f"Размер: {setti.condition_font_size}"),
                 ft.Text(f"Шрифт: {setti.condition_font_name}"),
@@ -86,7 +86,7 @@ class Info_formattingPage:
         
         # Почта
         feedback = ft.Container(
-            ft.Text("В случае изменений какона форматирования свяжитесь с нами: nochka_group_feedback@list.ru", selectable=True),
+            ft.Text("В случае изменений правил форматирования свяжитесь с нами: nochka_group_feedback@list.ru", selectable=True),
             height=110,
             alignment=ft.alignment.bottom_left
         )
