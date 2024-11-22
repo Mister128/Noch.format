@@ -3,12 +3,19 @@ import settings as setti
 import usefull_func
 from flet_route import Params, Basket
 
-class Info_formattingPage:
+class InfoFormattingPage:
     def view(self, page: ft.Page, params, basket: Basket):
         page.title="Правила форматирования"
 
         # Блок создания функций.-----------------------------------------------
 
+        # Загрузка параметров в настройки и изменений в json.
+        def choice_file(e):
+            setti.format_file = preset_choice.value
+            usefull_func.load_new_format()
+            usefull_func.push_changes_to_json()
+
+        # Функция смены темы.
         def theme_changed(e):
             page.theme_mode = (
                 "dark"
@@ -24,7 +31,7 @@ class Info_formattingPage:
         # ---------------------------------------------------------------------
         # Создание переменных для элементов управления.------------------------
 
-        # Кнопка назад
+        # Кнопка назад.
         upper_panel = ft.Column([
             ft.Row(
                 controls=[
@@ -45,8 +52,19 @@ class Info_formattingPage:
             ft.Divider()
         ]) 
         
-        # Инормация о форматировании
-        info= ft.Row([
+        # Информация о форматировании.
+        info = ft.Row([
+                ft.Column([
+                    ft.Text("Параметры листа: ", color=setti.accent_color),
+                    ft.Text(f"Высота листа: {setti.list_format_height} см"),
+                    ft.Text(f"Ширина листа: {setti.list_format_width} см"),
+                    ft.Text(f"Поле сверху: {setti.list_top_margin} см"),
+                    ft.Text(f"Поле снизу: {setti.list_bottom_margin} см"),
+                    ft.Text(f"Поле справа: {setti.list_right_margin} см"),
+                    ft.Text(f"Поле слева: {setti.list_left_margin} см"),
+                    ft.Text(f"Нумерация страниц: НУЖНА!")
+                ],),
+
                 ft.Column([
                     ft.Text("Заголовок: ", color=setti.accent_color),
                     ft.Text("Центровка: слева"),
@@ -60,9 +78,8 @@ class Info_formattingPage:
                     ft.Text("Стиль: Заголовок 2"),
                     ft.Text(f"Размер: {setti.task_font_size}"),
                     ft.Text(f"Шрифт: {setti.task_font_name}")
-                ],
-                ),
-                    
+                ],),
+
                 ft.Column([
                 ft.Text("Условие: ", color=setti.accent_color),
                 ft.Text("Центровка: слева"),
@@ -76,20 +93,33 @@ class Info_formattingPage:
                 ft.Text(f"Стиль: {setti.picture_description_style}"),
                 ft.Text(f"Размер: {setti.picture_description_size}"),
                 ft.Text(f"Шрифт: {setti.picture_description_name}"),
-                ],
-                ),
+                ],),
             ],
-            height=400,
+            height=350,
             alignment=ft.MainAxisAlignment.CENTER,
-            spacing=200,
-            )
-        
-        # Почта
+            spacing=50,
+        )
+
+        # Выпадающий список с именами фалов json.
+        preset_choice = ft.Dropdown(
+            border_color=setti.accent_color,
+            on_change=choice_file,
+            hint_text="Выберите файл",
+        )
+
+        # Почта.
         feedback = ft.Container(
             ft.Text("В случае изменений правил форматирования свяжитесь с нами: nochka_group_feedback@list.ru", selectable=True),
-            height=110,
+            height=20,
             alignment=ft.alignment.bottom_left
         )
+
+        # ---------------------------------------------------------------------
+        # Добавление названия файлов в выпадающий список.----------------------
+
+        for file in usefull_func.files_list("./format_settings"):
+            if ".json" in file:
+                preset_choice.options.append(ft.dropdown.Option(file))
         
         # ---------------------------------------------------------------------
         # Добавление элементов управления на страницу.-------------------------
@@ -98,7 +128,11 @@ class Info_formattingPage:
             '/',
             controls=[
                 upper_panel,
+                ft.Text("Выберите модификацию настроек форматирования", size=15),
+                preset_choice,
+                ft.Divider(),
                 info,
+                ft.Divider(),
                 feedback
             ]
         )

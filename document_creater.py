@@ -22,11 +22,6 @@ def create_docx():
 
     # Инициализация.------------------------------------------------------
 
-    # fln = f"{first_name.content.value} {last_name.content.value}"
-    # tow = str(type_work.value)
-    # now = str(number_of_work.content.value)
-    # cot = int(count_of_task.content.value)
-    # st = int(start_task.content.value)
     first_and_last_name = f"{settings.first_name} {settings.last_name}"
 
     # ---------------------------------------------------------------------
@@ -65,7 +60,7 @@ def create_docx():
 
     main_heading = document.add_heading()
     # Добавление заголовка с типом работы и ее номером.
-    run = main_heading.add_run(f"{settings.type_of_work} {settings.work_number}")
+    run = main_heading.add_run(f"{settings.type_of_work} {settings.work_number}. {text_formater(settings.work_theme)}")
 
     # Указание стиля шрифта.
 

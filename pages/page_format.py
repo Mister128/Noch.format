@@ -124,6 +124,7 @@ class NochkaPage:
                 bgcolor=setti.accent_color),
 
             ft.Row([ft.IconButton(icon=ft.icons.INFO_OUTLINE,
+                                  icon_color="white",
                                   on_click=lambda e: page.go('/info_formatting'))
                 ],
                 alignment=ft.MainAxisAlignment.END

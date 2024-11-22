@@ -9,20 +9,34 @@ import settings as setti
 Здесь используемые функции и элементы управления.
 """
 
+link = """
+Нам нужна обратная связь от пользователей! Так что если не трудно,
+то перейдите по [ссылке](https://forms.gle/3AVygRZyKY9sQy7e9) и заполните форму. 
+Это не займет больше 3 минут вашего времени. Опрос абсолютно анонимен.
+"""
+
 class TasksView:
     def view(self, page: ft.Page, params, basket: Basket):
         page.title="Условия заданий"
 
         # Блок создания функций.-----------------------------------------------
 
+        def close_and_off(e):
+            page.close(google_form_message)
+            setti.show_qiz = False
+            usefull_func.push_changes_to_json()
+
         # Добавления всех условий заданий в список и создание ворд-файла.
         def commit_and_check(e):
             for textfield in tasks_list.controls:
                 setti.tasks_text.append(textfield.value)
             setti.used_once = True
+            setti.work_theme = work_theme.content.value
             usefull_func.push_changes_to_json()
             document_creater.create_docx()
             page.open(file_save_alert)
+            if setti.show_qiz and setti.used_once:
+                page.open(google_form_message)
 
 
         # Изменение темы.
@@ -41,9 +55,47 @@ class TasksView:
         # ---------------------------------------------------------------------
         # Создание переменных для элементов управления.------------------------
 
+        work_theme = ft.Container(
+            ft.TextField(label="Введите тему работы",
+                         border_color=setti.accent_color),
+        )
+
+        # Баннер о просьбе пройти опрос.
+        google_form_message = ft.Banner(
+            content=ft.Container(
+                padding=15,
+                content=ft.Column(
+                    tight=True,
+                    controls=[
+                        ft.Markdown(
+                            link,
+                            selectable=True,
+                            on_tap_link=lambda e: page.launch_url(e.data),
+                            md_style_sheet=ft.MarkdownStyleSheet(
+                                p_text_style=ft.TextStyle(size=17),
+                                a_text_style=ft.TextStyle(color=setti.accent_color)
+                            )
+                        )
+                    ],
+                ),
+            ),
+            actions=[
+                ft.TextButton(
+                    text="Закрыть",
+                    on_click=lambda e: page.close(google_form_message),
+                    style=ft.ButtonStyle(color=setti.accent_color)
+                ),
+                ft.TextButton(
+                    text="Закрыть и больше не показывать",
+                    on_click=close_and_off,
+                    style=ft.ButtonStyle(color=setti.accent_color)
+                ),
+            ],
+        )
+
         # Колонка с текстовыми полями заданий.
         tasks_list = ft.ListView(
-            height=470,
+            height=340,
             spacing=15,
             padding=10,
             auto_scroll=False
@@ -95,6 +147,9 @@ class TasksView:
             '/',
             controls= [
                 upper_panel,
+                work_theme,
+                ft.Divider(),
+                ft.Text("Условия заданий:", size=20),
                 tasks_list,
                 ft.Row([ft.ElevatedButton(
                             "Создать",

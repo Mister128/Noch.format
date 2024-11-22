@@ -2,16 +2,11 @@ import flet as ft
 from flet_route import Params, Basket
 import settings as setti
 import usefull_func
+from settings import accent_color
 
 """
 В этом файле находится страница(класс страницы) с настройками. 
 Здесь используемые функции и элементы управления.
-"""
-
-link = """
-Нам нужна обратная связь от пользователей! Так что если не трудно,
-то перейдите по [ссылке](https://forms.gle/3AVygRZyKY9sQy7e9) и заполните форму. 
-Это не займет больше 3 минут вашего времени. Опрос абсолютно анонимен.
 """
 
 class SettingsPage:
@@ -19,11 +14,6 @@ class SettingsPage:
         page.title="Настройки"
 
         # Блок создания функций.-----------------------------------------------
-
-        def close_and_off(e):
-            page.close(google_form_message)
-            setti.show_qiz = False
-            usefull_func.push_changes_to_json()
 
         # Закрытие страницы и всех всплывающих элементов.
         def settings_close(e):
@@ -35,9 +25,6 @@ class SettingsPage:
         def change_color(e):
             setti.accent_color = setti.colors[e.control.value]
             usefull_func.push_changes_to_json()
-            if setti.show_qiz and setti.used_once:
-                page.open(google_form_message)
-            page.update()
 
         # Изменение темы
         def theme_changed(e):
@@ -80,40 +67,6 @@ class SettingsPage:
             ),
             alignment=ft.alignment.top_right
         )
-
-        # Баннер о просьбе пройти опрос.
-        google_form_message = ft.Banner(
-            content=ft.Container(
-                padding=15,
-                content=ft.Column(
-                    tight=True,
-                    controls=[
-                        ft.Markdown(
-                            link,
-                            selectable=True,
-                            on_tap_link=lambda e: page.launch_url(e.data),
-                            md_style_sheet=ft.MarkdownStyleSheet(
-                                p_text_style=ft.TextStyle(size=17),
-                                a_text_style=ft.TextStyle(color=setti.accent_color)
-                            )
-                        )
-                    ],
-                ),
-            ),
-            actions=[
-                ft.TextButton(
-                    text="Закрыть",
-                    on_click=lambda e: page.close(google_form_message),
-                    style=ft.ButtonStyle(color=setti.accent_color)
-                ),
-                ft.TextButton(
-                    text="Закрыть и больше не показывать",
-                    on_click=close_and_off,
-                    style=ft.ButtonStyle(color=setti.accent_color)
-                ),
-            ],
-        )
-
 
 
         # Кнопка для акцентного цвета.
