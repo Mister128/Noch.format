@@ -22,11 +22,6 @@ def create_docx():
 
     # Инициализация.------------------------------------------------------
 
-    # fln = f"{first_name.content.value} {last_name.content.value}"
-    # tow = str(type_work.value)
-    # now = str(number_of_work.content.value)
-    # cot = int(count_of_task.content.value)
-    # st = int(start_task.content.value)
     first_and_last_name = f"{settings.first_name} {settings.last_name}"
 
     # ---------------------------------------------------------------------
@@ -52,30 +47,30 @@ def create_docx():
     # Цикл для изменения формата каждой страницы.
     for section in sections:
         # Изменения формата листа на A4 для каждой страницы.
-        section.page_height = Cm(29.7)
-        section.page_width = Cm(21)
+        section.page_height = Cm(settings.list_format_height)
+        section.page_width = Cm(settings.list_format_width)
         # Изменение полей листа.
-        section.top_margin = Cm(2)
-        section.bottom_margin = Cm(2)
-        section.left_margin = Cm(3)
-        section.right_margin = Cm(1.5)
+        section.top_margin = Cm(settings.list_top_margin)
+        section.bottom_margin = Cm(settings.list_bottom_margin)
+        section.left_margin = Cm(settings.list_left_margin)
+        section.right_margin = Cm(settings.list_right_margin)
 
     # ---------------------------------------------------------------------
     # Заглавие.------------------------------------------------------------
 
     main_heading = document.add_heading()
     # Добавление заголовка с типом работы и ее номером.
-    run = main_heading.add_run(f"{settings.type_of_work} {settings.work_number}")
+    run = main_heading.add_run(f"{settings.type_of_work} {settings.work_number}. {text_formater(settings.work_theme)}")
 
     # Указание стиля шрифта.
 
     font = run.font
     # Жирный шрифт или нет.
-    font.bold = False
+    font.bold = settings.heading_font_bold
     # Название шрифта.
-    font.name = "Arial"
+    font.name = settings.heading_font_name
     # Размер шрифта.
-    font.size = Pt(18)
+    font.size = Pt(settings.heading_font_size)
     # Цвет шрифта.
     font.color.rgb = RGBColor(0, 0, 0)
 
@@ -99,41 +94,41 @@ def create_docx():
 
         font = run.font
         # Жирный шрифт или нет.
-        font.bold = False
+        font.bold = settings.task_font_bold
         # Название шрифта.
-        font.name = "Arial"
+        font.name = settings.task_font_name
         # Размер шрифта.
-        font.size = Pt(16)
+        font.size = Pt(settings.task_font_size)
         # Цвет шрифта.
         font.color.rgb = RGBColor(0, 0, 0)
 
         paragraph_format = task_heading.paragraph_format
         # Добавление отступа для заголовка задания.
-        paragraph_format.left_indent = Cm(1.5)
+        paragraph_format.left_indent = Cm(settings.task_left_indent)
 
         # ---------------------------------------------------------------------
         # Условие.-------------------------------------------------------------
 
-        if_paragraph = document.add_paragraph()
+        condition_paragraph = document.add_paragraph()
         # Разметка текста по ширине.
-        if_paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+        condition_paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         # Добавление текста с условием задания.
-        run = if_paragraph.add_run(f"Условие: {text_formater(settings.tasks_text[inter])}")
+        run = condition_paragraph.add_run(f"Условие: {text_formater(settings.tasks_text[inter])}")
 
         # Стиль шрифта.
 
         font = run.font
         # Название шрифта.
-        font.name = "Times New Roman"
+        font.name = settings.condition_font_name
         # Размер шрифта.
-        font.size = Pt(14)
+        font.size = Pt(settings.condition_font_size)
 
         # ---------------------------------------------------------------------
         # Описание картинки.---------------------------------------------------
 
         picture_description = document.add_paragraph()
         # Присвоение стиля для текста.
-        picture_description.style = "Quote"
+        picture_description.style = settings.picture_description_style
         # Разметка текста по центру.
         picture_description.alignment = WD_ALIGN_PARAGRAPH.CENTER
         # Добавление текста подписи рисунка.
@@ -143,9 +138,9 @@ def create_docx():
 
         font = run.font
         # Название шрифта.
-        font.name = "Times New Roman"
+        font.name = settings.picture_description_name
         # Размер шрифта.
-        font.size = Pt(12)
+        font.size = Pt(settings.picture_description_size)
 
         # ---------------------------------------------------------------------
 
