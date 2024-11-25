@@ -15,12 +15,6 @@ class SettingsPage:
 
         # Блок создания функций.-----------------------------------------------
 
-        # Закрытие страницы и всех всплывающих элементов.
-        def settings_close(e):
-            page.open(google_form_message)
-            page.close(google_form_message)
-            page.go("/")
-
         # Функция изменения акцентного цвета.
         def change_color(e):
             setti.accent_color = setti.colors[e.control.value]
