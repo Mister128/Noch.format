@@ -28,9 +28,9 @@ class TasksView:
 
         # Добавления всех условий заданий в список и создание ворд-файла.
         def commit_and_check(e):
-            for elem in tasks_list.controls.controls:
-                setti.tasks_text.append(elem[0].value)
-                setti.checkbox.append(elem[1].value)#ебать я хуею со списка
+            for elem in tasks_list.controls:
+                setti.tasks_text.append(elem.controls[0].value)
+                setti.checkbox.append(elem.controls[1].value)
             setti.used_once = True
             setti.work_theme = work_theme.content.value
             usefull_func.push_changes_to_json()

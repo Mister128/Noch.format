@@ -32,7 +32,6 @@ def files_list(directory):
 def load_new_format():
     with open(f"format_settings/{settings.format_file}") as f:
         data = json.load(f)
-        print(data)
         settings.list_format_height = float(data["list_format_height"])
         settings.list_format_width = float(data["list_format_width"])
 
