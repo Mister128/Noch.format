@@ -3,6 +3,11 @@ import settings as setti
 import usefull_func
 from flet_route import Params, Basket
 
+link = """
+В случае изменений правил форматирования свяжитесь с нами: nochka_group_feedback@list.ru, 
+а также вы пожете нас поддержать на [DonationAlert](https://www.donationalerts.com/r/nochka_group).
+"""
+
 class InfoFormattingPage:
     def view(self, page: ft.Page, params, basket: Basket):
         page.title="Правила форматирования"
@@ -95,7 +100,7 @@ class InfoFormattingPage:
                 ft.Text(f"Шрифт: {setti.picture_description_name}"),
                 ],),
             ],
-            height=350,
+            height=330,
             alignment=ft.MainAxisAlignment.CENTER,
             spacing=50,
         )
@@ -109,8 +114,8 @@ class InfoFormattingPage:
 
         # Почта.
         feedback = ft.Container(
-            ft.Text("В случае изменений правил форматирования свяжитесь с нами: nochka_group_feedback@list.ru", selectable=True),
-            height=20,
+            ft.Markdown(link, selectable=True, on_tap_link=lambda e: page.launch_url(e.data)),
+            height=40,
             alignment=ft.alignment.bottom_left
         )
 
