@@ -126,13 +126,14 @@ def create_docx():
         # ---------------------------------------------------------------------
         # Описание картинки.---------------------------------------------------
 
-        picture_description = document.add_paragraph()
-        # Присвоение стиля для текста.
-        picture_description.style = settings.picture_description_style
-        # Разметка текста по центру.
-        picture_description.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        # Добавление текста подписи рисунка.
-        run = picture_description.add_run("Рис " + str(i + 1) + ". ")
+        if settings.checkbox[inter] == False:
+            picture_description = document.add_paragraph()
+            # Присвоение стиля для текста.
+            picture_description.style = settings.picture_description_style
+            # Разметка текста по центру.
+            picture_description.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            # Добавление текста подписи рисунка.
+            run = picture_description.add_run("Рис " + str(i + 1) + ". ")
 
         # Стиль шрифта.
 

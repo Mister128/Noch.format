@@ -19,6 +19,11 @@ class SettingsPage:
         def change_color(e):
             setti.accent_color = setti.colors[e.control.value]
             usefull_func.push_changes_to_json()
+            upper_panel.controls[0].controls[0].icon_color = setti.accent_color
+            theme_button.content.icon_color = setti.accent_color
+            button_color.border_color = setti.accent_color
+            e.control.update()
+            page.update()
 
         # Изменение темы
         def theme_changed(e):

@@ -28,8 +28,9 @@ class TasksView:
 
         # Добавления всех условий заданий в список и создание ворд-файла.
         def commit_and_check(e):
-            for textfield in tasks_list.controls:
-                setti.tasks_text.append(textfield.value)
+            for elem in tasks_list.controls:
+                setti.tasks_text.append(elem.controls[0].value)
+                setti.checkbox.append(elem.controls[1].value)
             setti.used_once = True
             setti.work_theme = work_theme.content.value
             usefull_func.push_changes_to_json()
@@ -37,7 +38,6 @@ class TasksView:
             page.open(file_save_alert)
             if setti.show_qiz and setti.used_once:
                 page.open(google_form_message)
-
 
         # Изменение темы.
         def theme_changed(e):
@@ -111,12 +111,14 @@ class TasksView:
                     ft.Text("Файл сохранен в этой же папке!")]
             )
         )
-
+        
         # Добавление текстовых полей в соответствии с кол-вом заданий.
         for n in range(setti.start_task, setti.count_of_task + 1):
-            tasks_list.controls.append(ft.TextField(label=f"Условие задания {n}",
-                                                    multiline=True,
-                                                    border_color=setti.accent_color))
+            tasks_list.controls.append(ft.Column([
+                ft.TextField(label=f"Условие задания {n}", multiline=True, border_color=setti.accent_color),
+                ft.Checkbox(label=f"Убрать подпись под рисунком {n}", active_color=setti.accent_color, border_side=ft.border.BorderSide(width=1, color=setti.accent_color))
+                ]))
+                
 
         # Кнопка смены темы.
         theme_button = ft.IconButton(
